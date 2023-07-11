@@ -1,0 +1,21 @@
+---Blackjack---
+
+Player
+    cardA
+    cardB
+    
+
+    isDealer()
+        True
+        False
+
+    Dealer
+        cardA
+        cardH
+
+        revealH()
+
+
+cards
+
+chips
