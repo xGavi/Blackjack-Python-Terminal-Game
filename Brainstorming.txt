@@ -1,21 +1,22 @@
----Blackjack---
+---Tic Tac Toe---
 
-Player
-    cardA
-    cardB
-    
+Board
+    boardDict = {a:[1, 2, 3], b:[1, 2, 3], c:[1, 2, 3]}
 
-    isDealer()
-        True
-        False
+    checkWin(boardDict)
 
-    Dealer
-        cardA
-        cardH
+    displayBoard(boardDict)
 
-        revealH()
+    '   a     b     c
+          |     |     
+    1  a1  |  b1  |  c1  
+     _____|_____|_____
+          |     |     
+    2  a2  |  b2  |  c2  
+     _____|_____|_____
+          |     |     
+    3  a3  |  b2  |  c3  
+          |     |     '
 
-
-cards
-
-chips
+Cells(l, n, s)
+    changeState()
