@@ -1,3 +1,5 @@
+from logo import logo as l
+
 class Cell:
 	def __init__(self, x, y, state = '-'):
 		self.x = x
@@ -9,35 +11,40 @@ class Cell:
 			return ' '
 		return self.state
 
+xCount = 1
+yCount = 1
+cells = []
+for i in range(9):
+  globals()[f'c{i}'] = Cell(xCount, yCount)
+  cells.append(globals()[f'c{i}'])
+  xCount += 1
+  if xCount == 4:
+    xCount = 1
+    yCount += 1
 
 class Board:
 	def __init__(self):
-		self.boardDict = {(cell, cell.state) for cell in cells}
+		self.boardDict = {cell:[cell.x, cell.y] for cell in cells}
 		self.boardRows = [[], [], []]
 		self.boardColumns = [[], [], []]
 		self.boardDiagonals = [[], []]
 		self.winC = []
+		self.win = ''
 			
 	def __repr__(self):
-		board =f'''
- _____ _                 _____                     _____          
-|_   _(_)               |_   _|                   |_   _|         
-  | |  _  ___   ______    | | __ _  ___   ______    | | ___   ___ 
-  | | | |/ __| |______|   | |/ _` |/ __| |______|   | |/ _ \\ / _ \\
-  | | | | (__             | | (_| | (__             | | (_) |  __/
-  \\_/ |_|\\___|            \\_/\\__,_|\___|            \\_/\\___/ \\___|
-
-		          a     b     c
-		             |     |     
-		       1  {c0}  |  {c1}  |  {c2}  
-		        _____|_____|_____
-		             |     |     
-		       2  {c3}  |  {c4}  |  {c5}  
-		        _____|_____|_____
-		             |     |     
-		       3  {c6}  |  {c7}  |  {c8}  
-		             |     |     
-          '''
+		board = f'''
+		{l}
+		           a     b     c
+		              |     |     
+		        1  {c0}  |  {c1}  |  {c2}  
+		         _____|_____|_____
+		              |     |     
+		        2  {c3}  |  {c4}  |  {c5}  
+		         _____|_____|_____
+		              |     |     
+		        3  {c6}  |  {c7}  |  {c8}  
+		              |     |     
+		'''
 		return board
 
 	def genRows(self):
@@ -99,19 +106,12 @@ class Board:
 		winX = ['X', 'X', 'X']
 		for triplet in self.winConditions():
 			if triplet == winO:
-				return 'Player O wins!'
+				self.win = 'Player O wins!'
+				return self.win
 			elif triplet == winX:
-				return 'Player X wins!'
+				self.win = 'Player X wins!'
+				return self.win
 			else:
 				return ''
 
-xCount = 1
-yCount = 1
-cells = []
-for i in range(9):
-	globals()[f'c{i}'] = Cell(xCount, yCount)
-	cells.append(globals()[f'c{i}'])
-	xCount += 1
-	if xCount == 3:
-		xCount = 1
-		yCount += 1
+grob = globals()
