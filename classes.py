@@ -133,5 +133,12 @@ class Board:
 			elif triplet == winX:
 				self.win = 'Player X wins!'
 				return self.win
+		count = 0
+		for cell in cells:
+			if cell.state != '-':
+				count += 1
+		if count == 9:
+			self.win = 'Draw!'
+			return self.win
 
 grob = globals()
