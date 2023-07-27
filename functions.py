@@ -36,4 +36,5 @@ def play(p, xy):
 
 	board.boardDict.update({c.grob[f'c{count}']:p})
 	c.grob[f'c{count}'] = c.Cell(pC[0], pC[1], p)
+	c.cells[count] = c.Cell(pC[0], pC[1], p)
 	return

@@ -51,12 +51,18 @@ class Board:
 		count = 0
 		for cell in cells:
 			if count < 3:
+				if len(self.boardRows[0]) >= 3:
+					self.boardRows[0] = []
 				(self.boardRows[0]).append(cell.state)
 				count += 1
 			elif count < 6:
+				if len(self.boardRows[1]) >= 3:
+					self.boardRows[1] = []
 				(self.boardRows[1]).append(cell.state)
 				count += 1
 			elif count < 9:
+				if len(self.boardRows[2]) >= 3:
+					self.boardRows[2] = []
 				(self.boardRows[2]).append(cell.state)
 				count += 1
 		return self.boardRows
@@ -65,12 +71,18 @@ class Board:
 		count = 1
 		for cell in cells:
 			if count % 3 == 1:
+				if len(self.boardColumns[0]) >= 3:
+					self.boardColumns[0] = []
 				(self.boardColumns[0]).append(cell.state)
 				count += 1
 			elif count % 3 == 2:
+				if len(self.boardColumns[1]) >= 3:
+					self.boardColumns[1] = []
 				(self.boardColumns[1]).append(cell.state)
 				count += 1
 			elif count % 3 == 0:
+				if len(self.boardColumns[2]) >= 3:
+					self.boardColumns[2] = []
 				(self.boardColumns[2]).append(cell.state)
 				count += 1
 		return self.boardColumns
@@ -79,12 +91,20 @@ class Board:
 		count = 1
 		for cell in cells:
 			if count == 1 or count == 9:
+				if len(self.boardDiagonals[0]) >= 3:
+					self.boardDiagonals[0] = []
 				(self.boardDiagonals[0]).append(cell.state)
 				count += 1
 			elif count == 3 or count == 7:
+				if len(self.boardDiagonals[1]) >= 3:
+					self.boardDiagonals[1] = []
 				(self.boardDiagonals[1]).append(cell.state)
 				count += 1
 			elif count == 5:
+				if len(self.boardDiagonals[0]) >= 3:
+					self.boardDiagonals[0] = []
+				if len(self.boardDiagonals[1]) >= 3:
+					self.boardDiagonals[1] = []
 				(self.boardDiagonals[0]).append(cell.state)
 				(self.boardDiagonals[1]).append(cell.state)
 				count += 1
@@ -93,6 +113,8 @@ class Board:
 		return self.boardDiagonals
 
 	def winConditions(self):
+		if self.winC != []:
+			self.winC = []
 		for triplet in self.genRows():
 			self.winC.append(triplet)
 		for triplet in self.genColumns():
@@ -111,7 +133,5 @@ class Board:
 			elif triplet == winX:
 				self.win = 'Player X wins!'
 				return self.win
-			else:
-				return ''
 
 grob = globals()
