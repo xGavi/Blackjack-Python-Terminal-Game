@@ -38,3 +38,24 @@ def play(p, xy):
 	c.grob[f'c{count}'] = c.Cell(pC[0], pC[1], p)
 	c.cells[count] = c.Cell(pC[0], pC[1], p)
 	return
+
+def game():
+	while True:
+		print(board)
+		pX = input("Player X's turn. Where do you want to play? (l#)\n")
+		while play('X', pX) != None:
+			print(play('X', pX))
+			pX = input("Player X's turn. Where do you want to play? (l#)\n")
+		print(board)
+		if board.checkWin() != None:
+			print(board.checkWin())
+			break
+
+		pO = input("Player O's turn. Where do you want to play? (l#)\n")
+		while play('O', pO) != None:
+			print(play('X', pX))
+			pO = input("Player O's turn. Where do you want to play? (l#)\n")
+		print(board)
+		if board.checkWin() != None:
+			print(board.checkWin())
+			break
